@@ -34,7 +34,7 @@ ngOnInit():void{
   },
   (error)=>{
     console.log(error)
-    Swal.fire('Error!!','Error in lloading data','error')
+    Swal.fire('Error!!','Error in loading data','error')
   })
 
 
