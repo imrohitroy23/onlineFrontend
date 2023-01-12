@@ -34,6 +34,7 @@ export class ViewQuizzesComponent {
   ]
   constructor(private _quiz: QuizService) {}
   ngOnInit(): void {
+   
     
     this._quiz.quizzes().subscribe(
       (data: any) => {
@@ -46,4 +47,26 @@ export class ViewQuizzesComponent {
       },
     )
   }
+
+deleteQuiz(qid:any){
+Swal.fire({
+  icon:'info',
+  title:'Are you sure ?',
+  confirmButtonText:'Delete',
+  showCancelButton:true
+}).then((result)=>{
+  if(result.isConfirmed){
+    this._quiz.deleteQuiz(qid).subscribe(
+      (data:any)=>{
+        this.quizzes=this.quizzes.filter((quiz)=>quiz.qid!=qid);
+      Swal.fire('Success',"Quiz deleted",'success')
+    },(error)=>{
+      Swal.fire("error!!","error, loading quiz",'error')
+    })
+  }
+})
+ 
+}
+
+
 }
