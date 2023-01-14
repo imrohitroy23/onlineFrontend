@@ -13,7 +13,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatCardModule} from '@angular/material/card';
+
 import {MatToolbarModule} from '@angular/material/toolbar'
 import {MatIconModule} from '@angular/material/icon'
 import { HttpClientModule } from '@angular/common/http';
@@ -23,6 +23,7 @@ import { UserdashboardComponent } from './pages/user/userdashboard/userdashboard
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import {MatListModule} from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
 import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { ViewCategoriesComponent } from './pages/admin/view-categories/view-categories.component';
@@ -32,6 +33,8 @@ import { AddQuizComponent } from './pages/admin/add-quiz/add-quiz.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { UpdateQuizComponent } from './pages/admin/update-quiz/update-quiz.component';
+import { ViewQuestionsComponent } from './pages/admin/view-questions/view-questions.component';
+import { AddQuestionComponent } from './pages/admin/add-question/add-question.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +53,8 @@ import { UpdateQuizComponent } from './pages/admin/update-quiz/update-quiz.compo
     ViewQuizzesComponent,
     AddQuizComponent,
     UpdateQuizComponent,
+    ViewQuestionsComponent,
+    AddQuestionComponent,
    
   ],
   imports: [

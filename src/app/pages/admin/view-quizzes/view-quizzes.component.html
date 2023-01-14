@@ -15,7 +15,7 @@
     <p>{{q.description}}</p>
    </mat-card-content>
    <div class="container mb20 ">
-    <button  mat-flat-button color="accent">
+    <button [routerLink]="'/admin/view-questions/'+q.qid+'/'+q.title" mat-flat-button color="accent">
       Question
     </button>
     <button
