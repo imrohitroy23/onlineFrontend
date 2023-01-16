@@ -24,6 +24,7 @@ import { DashboardComponent } from './pages/admin/dashboard/dashboard.component'
 import { ProfileComponent } from './pages/profile/profile.component';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
+import { SidebarComponent as UserSideBar } from './pages/user/sidebar/sidebar.component';
 import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { ViewCategoriesComponent } from './pages/admin/view-categories/view-categories.component';
@@ -47,6 +48,7 @@ import { AddQuestionComponent } from './pages/admin/add-question/add-question.co
     UserdashboardComponent,
     ProfileComponent,
     SidebarComponent,
+    UserSideBar,
     WelcomeComponent,
     ViewCategoriesComponent,
     AddCategoriesComponent,
