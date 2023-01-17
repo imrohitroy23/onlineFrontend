@@ -24,9 +24,7 @@ export class ViewCategoriesComponent {
     description:"this is from backened"
   }
 ]
-constructor(private _category:CategoryService){
-
-}
+constructor(private _category:CategoryService){}
 ngOnInit():void{
   this._category.categories().subscribe((data:any)=>{
     this.categories=data;
@@ -36,8 +34,25 @@ ngOnInit():void{
     console.log(error)
     Swal.fire('Error!!','Error in loading data','error')
   })
-
-
+}
+deleteCat(cid:any){
+  Swal.fire({
+    icon:'info',
+    title:'Are you sure ?',
+    confirmButtonText:'Delete',
+    showCancelButton:true
+  }).then((result)=>{
+    if(result.isConfirmed){
+      this._category.delcat(cid).subscribe(
+        (data:any)=>{
+          this.categories=this.categories.filter((categories)=>categories.cid!=cid);
+        Swal.fire('Success',"Quiz deleted",'success')
+      },(error)=>{
+        Swal.fire("error!!","Quiz exists with this Category. First delete that to delete this",'error')
+      })
+    }
+  })
 }
 
 }
+

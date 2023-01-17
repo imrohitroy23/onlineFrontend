@@ -14,7 +14,7 @@ export class UpdateQuizComponent {
     private _route: ActivatedRoute,
     private _cat: CategoryService,
     private _quiz: QuizService,
-    private _router:Router
+    private _router: Router,
   ) {}
   qid = 0
   quiz: any
@@ -41,24 +41,17 @@ export class UpdateQuizComponent {
     )
   }
   //update form to submit
-  public updateData(){
+  public updateData() {
     //validation laga lena
-    this._quiz.updateQuiz(this.quiz).subscribe((data:any)=>{
-
-
-
-Swal.fire("Success !!","Quiz Updated",'success').then((e)=>{
-  this._router.navigate(['/admin/quizzes'])
-})
-    }
-    ,
-    (error)=>{
-      Swal.fire("Error","Error in updating","error")
-    })
+    this._quiz.updateQuiz(this.quiz).subscribe(
+      (data: any) => {
+        Swal.fire('Success !!', 'Quiz Updated', 'success').then((e) => {
+          this._router.navigate(['/admin/quizzes'])
+        })
+      },
+      (error) => {
+        Swal.fire('Error', 'Error in updating', 'error')
+      },
+    )
   }
-
-
-
-
-
 }

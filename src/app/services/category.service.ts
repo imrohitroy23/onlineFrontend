@@ -6,11 +6,16 @@ import baseUrl from './helper';
 })
 export class CategoryService {
 
-  constructor(private _http:HttpClient) {} 
+  constructor(private _http:HttpClient) {}
     public categories(){
       return this._http.get(`${baseUrl}/category/`)
     }
  public addCategory(category: any){
   return this._http.post(`${baseUrl}/category/`,category)
  }
+public delcat(cid:any){
+  return this._http.delete(`${baseUrl}/category/${cid}`)
+}
+
+
 }
