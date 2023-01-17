@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     //server request to generate token
     this.login.generateToken(this.loginData).subscribe(
       (data: any) => {
-   
+
         console.log(data)
 
         //login...
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['admin'])
             //window.location.href = '/admin'
           } else if (this.login.getUserRole() == 'normal') {
-            this.router.navigate(['user-dashboard'])
+            this.router.navigate(['user-dashboard/0'])
             //window.location.href = '/user-dashboard'
           } else {
             this.login.logout()
@@ -65,5 +65,5 @@ export class LoginComponent implements OnInit {
       },
     )
   }
-  
+
 }

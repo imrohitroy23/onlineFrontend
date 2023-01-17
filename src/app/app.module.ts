@@ -36,6 +36,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { UpdateQuizComponent } from './pages/admin/update-quiz/update-quiz.component';
 import { ViewQuestionsComponent } from './pages/admin/view-questions/view-questions.component';
 import { AddQuestionComponent } from './pages/admin/add-question/add-question.component';
+import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +58,7 @@ import { AddQuestionComponent } from './pages/admin/add-question/add-question.co
     UpdateQuizComponent,
     ViewQuestionsComponent,
     AddQuestionComponent,
+    LoadQuizComponent,
    
   ],
   imports: [

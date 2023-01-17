@@ -7,7 +7,7 @@ import baseUrl from './helper';
 })
 export class QuestionService {
 
-  constructor(private _http:HttpClient) { 
+  constructor(private _http:HttpClient) {
 
   }
   public getQuestionsOfQuiz(qid:any){
