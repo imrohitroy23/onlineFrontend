@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { QuizService } from 'src/app/services/quiz.service'
+import Swal from 'sweetalert2'
 //if any error occurrs delete the instructionwala
 @Component({
   selector: 'app-instructions',
@@ -10,7 +11,7 @@ import { QuizService } from 'src/app/services/quiz.service'
 export class InstructionsComponent  {
  qid:any
   quiz:any
-  constructor(private  _route:ActivatedRoute,private _quiz:QuizService) {}
+  constructor(private  _route:ActivatedRoute, private _router:Router , private _quiz:QuizService) {}
 
   ngOnInit(): void {
         this.qid=this._route.snapshot.params["qid"]
@@ -25,7 +26,20 @@ export class InstructionsComponent  {
   }
 //error in this ts file and html file
 
-  startQuiz(){
-    alert("going to start")
-  }
+startQuiz() {
+  Swal.fire({
+    title: 'Do you want to start the quiz?',
+
+    showCancelButton: true,
+    confirmButtonText: `Start`,
+    icon: 'info',
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      this._router.navigate(['/start/' + this.qid]);
+    } else if (result.isDenied) {
+      Swal.fire('Changes are not saved', '', 'info');
+    }
+  });
+}
 }

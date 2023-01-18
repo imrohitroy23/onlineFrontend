@@ -13,7 +13,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-
+import {MatRadioModule} from '@angular/material/radio';
 import {MatToolbarModule} from '@angular/material/toolbar'
 import {MatIconModule} from '@angular/material/icon'
 import { HttpClientModule } from '@angular/common/http';
@@ -38,6 +38,8 @@ import { ViewQuestionsComponent } from './pages/admin/view-questions/view-questi
 import { AddQuestionComponent } from './pages/admin/add-question/add-question.component';
 import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 import { InstructionsComponent } from './pages/user/instructions/instructions.component';
+
+import { StartComponent } from './pages/user/start/start.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +63,9 @@ import { InstructionsComponent } from './pages/user/instructions/instructions.co
     AddQuestionComponent,
     LoadQuizComponent,
     InstructionsComponent,
-   
+
+    StartComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -72,6 +76,7 @@ import { InstructionsComponent } from './pages/user/instructions/instructions.co
     MatSnackBarModule,
     MatIconModule,
     MatCardModule,
+    MatRadioModule,
     MatToolbarModule,
     MatInputModule,
     MatFormFieldModule,
