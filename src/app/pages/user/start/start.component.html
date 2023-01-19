@@ -1,1 +1,63 @@
-<p>start works!</p>
+<div class="container">
+<div class="row">
+  <div class="col-md-2">
+    instructions
+    {{questions|json}}
+  </div>
+  <div class="col-md-8">
+    <mat-card *ngFor="let q of questions; let i = index" class="mt10">
+      <mat-card-content>
+        <p>
+          <b>Q {{ i + 1 }})</b>
+          <span class="ml10" [innerHTML]="q.content"></span>
+        </p>
+
+        <mat-divider> </mat-divider>
+        <br />
+<form>
+        <div class="row mt20">
+          <div class="col-md-6">
+            <input
+              type="radio"
+              [value]="q.option1"
+              name="i"
+              [(ngModel)]="q.givenAnswer"
+            />{{ q.option1 }}
+          </div>
+          <div class="col-md-6">
+            <input
+              type="radio"
+              [value]="q.option2"
+              name="i"
+              [(ngModel)]="q.givenAnswer"
+            />{{ q.option2 }}
+          </div>
+        </div>
+
+        <div class="row mt20">
+          <div class="col-md-6">
+            <input
+              type="radio"
+              [value]="q.option3"
+              name="i"
+              [(ngModel)]="q.givenAnswer"
+            />{{ q.option3 }}
+          </div>
+          <div class="col-md-6">
+            <input
+              type="radio"
+              [value]="q.option4"
+              name="i"
+              [(ngModel)]="q.givenAnswer"
+            />{{ q.option4 }}
+          </div>
+        </div>
+      </form>
+      </mat-card-content>
+    </mat-card>
+  <div class="col-md-2">
+    timer
+  </div>
+</div>
+
+</div>
