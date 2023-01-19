@@ -13,7 +13,9 @@ export class StartComponent implements OnInit {
   qid: any
   marksGot = 0
   correctAnswers = 0
+  isSubmit=false
   attempted = 0
+  timer:any
   questions: any
   constructor(
     private _route: ActivatedRoute,
@@ -30,10 +32,12 @@ export class StartComponent implements OnInit {
     this._question.getQuestionsOfQuizForTest(this.qid).subscribe(
       (data: any) => {
         this.questions = data
-        this.questions.forEach((q:any)=>{
-          q["givenAnswer"]=""
+        this.timer=this.questions.length*2*60 //seconds
+        this.questions.forEach((q: any) => {
+          q['givenAnswer'] = ''
         })
         console.log(this.questions)
+        this.startTimer()
       },
       (error) => {
         Swal.fire('error', 'error in start.component.ts', 'error')
@@ -46,5 +50,56 @@ export class StartComponent implements OnInit {
     this.locationst.onPopState(() => {
       history.pushState(null, location.href)
     })
+  }
+  submitQuiz() {
+    Swal.fire({
+      title: 'Do you want to Submit the quiz?',
+
+      showCancelButton: true,
+
+      confirmButtonText: `Submit`,
+      icon: 'info',
+    }).then((result) => {
+if(result.isConfirmed){
+  this.evalQuiz()
+}
+    })
+  }
+  startTimer()
+  {
+   let t:any= window.setInterval(()=>{
+      if(this.timer<=0) {
+        this.evalQuiz()
+        clearInterval(t)
+      }else{
+        this.timer--;
+      }
+    },1000)
+  }
+  getMinutes(){
+    let minutes=Math.floor(this.timer/60)
+    let ss=this.timer-minutes*60
+    return `${minutes} min : ${ss} sec`;
+  }
+  evalQuiz(){
+
+      this.isSubmit=true
+      this.questions.forEach((q: any) => {
+        if (q.givenAnswer == q.answer) {
+          this.correctAnswers++
+          let singleMarks =
+            this.questions[0].quiz.maxMarks / this.questions.length
+            console.log("singl"+singleMarks)
+          this.marksGot += singleMarks
+        }
+        if(q.givenAnswer.trim()!=''){
+          this.attempted++
+        }
+      })
+      console.log('correct answer' + this.correctAnswers)
+      console.log('marks got ' + this.marksGot)
+      console.log("attempted "+this.attempted)
+      console.log(this.questions)
+
   }
 }
