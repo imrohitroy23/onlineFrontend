@@ -33,9 +33,7 @@ export class StartComponent implements OnInit {
       (data: any) => {
         this.questions = data
         this.timer=this.questions.length*2*60 //seconds
-        this.questions.forEach((q: any) => {
-          q['givenAnswer'] = ''
-        })
+
         console.log(this.questions)
         this.startTimer()
       },
@@ -82,24 +80,35 @@ if(result.isConfirmed){
     return `${minutes} min : ${ss} sec`;
   }
   evalQuiz(){
+this._question.evalquiz(this.questions).subscribe((data:any)=>{
+console.log(data)
+this.marksGot=parseFloat(Number(data.marksGot).toFixed(2))
+this.correctAnswers=data.correctAnswers
+this.attempted=data.attempted
+this.isSubmit=true
+},(error)=>{
+console.log(error)
+})
+      // this.isSubmit=true
+      // this.questions.forEach((q: any) => {
+      //   if (q.givenAnswer == q.answer) {
+      //     this.correctAnswers++
+      //     let singleMarks =
+      //       this.questions[0].quiz.maxMarks / this.questions.length
+      //       console.log("singl"+singleMarks)
+      //     this.marksGot += singleMarks
+      //   }
+      //   if(q.givenAnswer.trim()!=''){
+      //     this.attempted++
+      //   }
+      // })
+      // console.log('correct answer' + this.correctAnswers)
+      // console.log('marks got ' + this.marksGot)
+      // console.log("attempted "+this.attempted)
+      // console.log(this.questions)
 
-      this.isSubmit=true
-      this.questions.forEach((q: any) => {
-        if (q.givenAnswer == q.answer) {
-          this.correctAnswers++
-          let singleMarks =
-            this.questions[0].quiz.maxMarks / this.questions.length
-            console.log("singl"+singleMarks)
-          this.marksGot += singleMarks
-        }
-        if(q.givenAnswer.trim()!=''){
-          this.attempted++
-        }
-      })
-      console.log('correct answer' + this.correctAnswers)
-      console.log('marks got ' + this.marksGot)
-      console.log("attempted "+this.attempted)
-      console.log(this.questions)
-
+  }
+  printpage(){
+    window.print()
   }
 }

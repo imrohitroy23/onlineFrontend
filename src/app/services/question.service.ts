@@ -13,7 +13,7 @@ export class QuestionService {
   public getQuestionsOfQuiz(qid:any){
     return this._http.get(`${baseUrl}/question/quiz/all/${qid}`)
   }
-  
+
   public getQuestionsOfQuizForTest(qid: any) {
     return this._http.get(`${baseUrl}/question/quiz/${qid}`);
   }
@@ -26,5 +26,11 @@ export class QuestionService {
 public deleteQuestion(questionid:any){
   return this._http.delete(`${baseUrl}/question/${questionid}`)
 }
+//eval quiz
+public evalquiz(questions:any){
+  return this._http.post(`${baseUrl}/question/eval-quiz`,questions)
+}
+
+
 
 }
