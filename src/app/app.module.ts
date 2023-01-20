@@ -41,6 +41,7 @@ import { InstructionsComponent } from './pages/user/instructions/instructions.co
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { StartComponent } from './pages/user/start/start.component';
 import { NgxUiLoaderModule,NgxUiLoaderHttpModule} from 'ngx-ui-loader';
+import { UpdateCategoryComponent } from './pages/admin/update-category/update-category.component';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { NgxUiLoaderModule,NgxUiLoaderHttpModule} from 'ngx-ui-loader';
     InstructionsComponent,
 
     StartComponent,
+     UpdateCategoryComponent,
 
   ],
   imports: [

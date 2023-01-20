@@ -16,6 +16,12 @@ export class CategoryService {
 public delcat(cid:any){
   return this._http.delete(`${baseUrl}/category/${cid}`)
 }
+public getCat(cid:any){
+  return this._http.get(`${baseUrl}/category/${cid}`)
+}
 
+public updateCategory(cat: any) {
+  return this._http.put(`${baseUrl}/category/`, cat)
+}
 
 }

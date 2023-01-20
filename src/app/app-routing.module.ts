@@ -4,6 +4,7 @@ import { AddCategoriesComponent } from './pages/admin/add-categories/add-categor
 import { AddQuestionComponent } from './pages/admin/add-question/add-question.component'
 import { AddQuizComponent } from './pages/admin/add-quiz/add-quiz.component'
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component'
+import { UpdateCategoryComponent } from './pages/admin/update-category/update-category.component'
 import { UpdateQuizComponent } from './pages/admin/update-quiz/update-quiz.component'
 import { ViewCategoriesComponent } from './pages/admin/view-categories/view-categories.component'
 import { ViewQuestionsComponent } from './pages/admin/view-questions/view-questions.component'
@@ -54,6 +55,10 @@ const routes: Routes = [
         component: ViewCategoriesComponent,
       },
       {
+        path: 'category/:cid',
+        component: UpdateCategoryComponent,
+      },
+      {
         path: 'quizzes',
         component: ViewQuizzesComponent,
       },
@@ -69,6 +74,7 @@ const routes: Routes = [
         path: 'quiz/:qid',
         component: UpdateQuizComponent,
       },
+
       {
         path: 'view-questions/:qid/:title',
         component: ViewQuestionsComponent,
@@ -89,17 +95,16 @@ const routes: Routes = [
         component: LoadQuizComponent,
       },
       {
-        path:'instructions/:qid',
-        component:InstructionsComponent
+        path: 'instructions/:qid',
+        component: InstructionsComponent,
       },
-
     ],
   },
   {
-    path:"start/:qid",
-    component:StartComponent,
-    canActivate:[NormalGuard]
-  }
+    path: 'start/:qid',
+    component: StartComponent,
+    canActivate: [NormalGuard],
+  },
 ]
 
 @NgModule({
