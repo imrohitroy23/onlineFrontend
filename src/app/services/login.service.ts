@@ -1,76 +1,57 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-import baseUrl from './helper';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Customer } from '../common/customer';
+import { Engineer } from '../common/engineer';
+import { Manager } from '../common/manager';
+import { User } from '../common/user';
+import { UserDto } from '../common/user-dto';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  
-  constructor(private http:HttpClient) { 
+
+
+  loggedInUser:Subject<User>=new BehaviorSubject<User>(null);
+  loggedInCustomer:Subject<Customer> = new BehaviorSubject<Customer>(null);
+  loggedInEngineer:Subject<Engineer> = new BehaviorSubject<Engineer>(null);
+  loggedInManager:Subject<Manager> = new BehaviorSubject<Manager>(null);
+
+  constructor(private http:HttpClient,private userService:UserService) { }
+
+  checkLogin(userDto:UserDto):Observable<User>{
+
+    const loginUrl="http://localhost:8081/login/check";
+    
+     this.http.post<User>(loginUrl,userDto).subscribe(data=>{
+      this.loggedInUser.next(data);
+
+      // If user is a customer then get their details
+      if(data.role=='customer'){
+        this.userService.getCustomerByUserId(data.id).subscribe(data=>{
+          this.loggedInCustomer.next(data);
+        })
+      }
+       // If user is an Engineer then get their details
+        if(data.role=='engineer'){
+         this.userService.getEngineerByUserId(data.id).subscribe(data=>{
+           this.loggedInEngineer.next(data);
+         })
+       }
+
+        // If user is an Manager then get their details
+        if(data.role=='manager'){
+          this.userService.getManagerByUserId(data.id).subscribe(data=>{
+            this.loggedInManager.next(data);
+          })
+        }
+     })
+
+     return  this.http.post<User>(loginUrl,userDto);
   }
 
-public getCurrentUser(){
-  return this.http.get(`${baseUrl}/current-user`)
-}
 
-  public generateToken(loginData:any)
-  {
-    return this.http.post(`${baseUrl}/generate-token`,loginData)
-
-  }
-
-//login user
-public loginUser(token: string){
-  localStorage.setItem("token",token)
-  return true
-}
-//islogin function to check status of login
-public isLoggedIn(){
-  let tokenStr=localStorage.getItem("token")
-  if(tokenStr==undefined||tokenStr==''|| tokenStr==null) {
-    return false;
-  }
-  else{
-    return true;
-  }
-}
-public logout(){
-  localStorage.removeItem('token');
-    return true;
-  
-}
-
-//get token
-public getToken(){
-  return localStorage.getItem('token');
-}
-
-
-public setUser(user: any){
-  localStorage.setItem('user',JSON.stringify(user))
-}
-
-
-
-public getUser(){
- let userStr= localStorage.getItem('user')
-
- if(userStr!=null){
-  return JSON.parse(userStr);
- }
- else{
-  this.logout()
-  return null;
- }
-
-}
-
-//get user role
-public getUserRole(){
-  let user=this.getUser()
-  return user.authorities[0].authority
-}
 
 }
